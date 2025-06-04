@@ -4,6 +4,7 @@ const secret = "#@!d3r"
 function createTokenForUser(user){  
     const payload = {
         _id:user._id,
+        name:user.name,
         email:user.email,
         profilePageURL:user.profilePageURL,
         role:user.role
@@ -13,7 +14,7 @@ function createTokenForUser(user){
 }
 
 function validateToken(token){
-    const payload = jwt.validate(token, secret)
+    const payload = jwt.verify(token, secret)
     return payload
 }
 
