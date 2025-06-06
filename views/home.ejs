@@ -5,20 +5,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HomePage</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
   </head>
   <body>
     <%- include('./partials/nav') %>
+
     <div class="container mt-3">
-      <% blogs.forEach(blog => { %>
-      <div class="card" style="width: 18rem">
-        <img src="<%= blog.coverImageURL %>" class="card-img-top"/>
-        <div class="card-body">
-          <h5 class="card-title"><%= blog.title %></h5>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <% blogs.forEach(blog => { %>
+        <div class="col">
+          <div class="card h-100 d-flex flex-column">
+            <img
+              src="<%= blog.coverImageURL %>"
+              class="card-img-top"
+              alt="Blog Image"
+            />
+            <div
+              class="card-body flex-grow-1 d-flex flex-column justify-content-between"
+            >
+              <h5 class="card-title"><%= blog.title %></h5>
+              <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+            </div>
+          </div>
         </div>
+        <% }) %>
       </div>
-      <% }) %>
     </div>
+
     <%- include('./partials/script') %>
   </body>
 </html>
